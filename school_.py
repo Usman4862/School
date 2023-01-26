@@ -38,7 +38,7 @@ Do you want to expell {first_name} {last_name} ?(y/n)
         ...
         ...
 """
-from functions import dashboard, choice_
+from functions import *
 
 
 while True:

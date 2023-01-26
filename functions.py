@@ -1,8 +1,17 @@
 # FUNCTIONS___________
 import os
 # from random import randint
+from sys import platform
 
-target_ = '33'
+
+def clear_screen():
+    if platform == "linux" or platform == "linux2":
+        os.system("clear")
+    elif platform == "win32":
+        os.system("cls")
+
+
+target_ = 1
 
 storage = {
     target_ : {
@@ -16,7 +25,7 @@ storage = {
 
 
 def dashboard():
-    os.system('cls')
+    clear_screen()
     print("**************ROYAL EDUCATION COMPLEX******************\n")
     print("1: View All Students")
     print("2: Add New Student")
@@ -40,20 +49,20 @@ def choice_():
     elif user_choice == "5":
         search_student()
     elif user_choice == "0":
-        os.system("cls")
+        clear_screen()
         exit()
     else:
-        os.system("cls")
+        clear_screen()
         exit("\nInvalid Choice")
 
 
 def view_all_students():
-    os.system("cls")
+    clear_screen()
     print("**************\n")
     print("All Students \n")
     for roll, values in storage.items():
         print(f"{roll}----{values['firstname']}-----{values['lastname']}-----{values['class']}-----{values['fees']} \n")
-        input("Press enter to go back: ")
+    input("Press enter to go back: ")
 
 
 def add_new_student():
@@ -72,19 +81,21 @@ def add_new_student():
         "class" : class_,
         "fees" : fees,
         }
-    storage['33'] = student
+    from random import randint
+    roll_number = randint(0,999999)
+    storage[roll_number] = student
     
     print(f"*************{first_name} {last_name}***************")
     print("Added Sucessfully\n")
 
 
 def edit_student():
-    os.system("cls")
+    clear_screen()
     print("\n *************")
     print("\nEdit Student")
     _edit = input("Enter Roll Number: ")
     while True:
-        if _edit == target_:
+        if _edit == str(target_):
             print("1- Edit first name: ")
             print("2- Edit last name: ")
             print("3- Edit Roll number: ")
@@ -120,18 +131,18 @@ def edit_student():
             elif choice == "0":
                 break
             else:
-                os.system("cls")
+                clear_screen()
                 print("Invalid Choice \n")
         else:
             print("Student not exist")
 
 
 def expell_student():
-    os.system("cls")
+    clear_screen()
     print("**************\n")
     print("Remove a Student\n")
     remove = input("Enter Roll Number of a student:")
-    if remove == target_:
+    if remove == str(target_):
         del storage[target_]
         print(f"{target_} has been removed\n")
     else:
@@ -139,7 +150,7 @@ def expell_student():
     input("Press Enter to go back: ")
 
 def search_student():
-    os.system("cls")
+    clear_screen()
     print("**************\n")
     print("------Search a student------- \n ")
     search_ = input("Enter roll number: ")
